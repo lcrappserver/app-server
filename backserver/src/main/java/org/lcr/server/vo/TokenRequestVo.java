@@ -8,38 +8,39 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2016/1/13.
+ * 用户验证请求vo
  */
+@SuppressWarnings("unused")
 public class TokenRequestVo implements Serializable {
 
-    private static final long serialVersionUID = -72204640552361866L;
+  private static final long serialVersionUID = -72204640552361866L;
 
-    private String loginName;
+  private String loginName;
 
-    private String password;
+  private String password;
 
-    public String getLoginName() {
-        return loginName;
+  public String getLoginName() {
+    return loginName;
+  }
+
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void namevalueBind(List<NameValuePair> params) {
+    Map<String, String> map = new HashMap<String, String>();
+    for (NameValuePair param : params) {
+      map.put(param.getName(), param.getValue());
     }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void namevalueBind(List<NameValuePair> params) {
-        Map<String, String> map = new HashMap<String, String>();
-        for (NameValuePair param : params) {
-            map.put(param.getName(), param.getValue());
-        }
-        this.loginName = map.get("loginName");
-        this.password = map.get("password");
-    }
+    this.loginName = map.get("loginName");
+    this.password = map.get("password");
+  }
 }

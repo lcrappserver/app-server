@@ -3,11 +3,11 @@ package org.lcr.server.https.action;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.lcr.server.entity.BackUserInfoEntity;
 import org.lcr.server.tools.JsonValidator;
 import org.lcr.server.common.Contants;
 import org.lcr.server.common.Message;
 import org.lcr.server.service.TokenService;
-import org.lcr.server.entity.BackTokenEntity;
 import org.lcr.server.vo.ResponseVo;
 import org.lcr.server.vo.TokenRequestVo;
 import org.slf4j.Logger;
@@ -29,45 +29,48 @@ import java.util.List;
 @RequestMapping(value = "/back")
 public class TokenController {
 
-    private static Logger logger = LoggerFactory.getLogger(TokenController.class);
+  private static Logger logger = LoggerFactory.getLogger(TokenController.class);
 
-    @Autowired
-    private TokenService tokenService;
+  @Autowired
+  private TokenService tokenService;
 
-    @ResponseBody
-    @RequestMapping(value = "/token", produces = "application/json; charset=utf-8", method = {RequestMethod.POST})
-    public String token(@RequestBody String requestBody, HttpServletRequest request, HttpServletResponse response) throws IOException {
+  @ResponseBody
+  @RequestMapping(value = "/token", produces = "application/json; charset=utf-8", method = {
+      RequestMethod.POST})
+  public String token(@RequestBody String requestBody, HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
 
-        logger.debug("token start");
+    logger.debug("token start");
 
-        long start = System.currentTimeMillis();
+    long start = System.currentTimeMillis();
 
-        JsonValidator json = new JsonValidator();
-        TokenRequestVo requestVo = new TokenRequestVo();
+    JsonValidator json = new JsonValidator();
+    TokenRequestVo requestVo = new TokenRequestVo();
 
-        if (json.validate(requestBody)) {
-            requestVo = JSONObject.parseObject(requestBody, TokenRequestVo.class);
-        } else {
-            List<NameValuePair> params = URLEncodedUtils.parse(requestBody, Charset.forName("UTF-8"));
-            requestVo.namevalueBind(params);
-        }
-
-        ResponseVo result = tokenService.getToken(requestVo);
-
-        if (!Message.SUCCESS_CODE.equals(result.getCode())) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        } else {
-            response.setStatus(HttpServletResponse.SC_OK);
-            BackTokenEntity entity = (BackTokenEntity) result.getEntity();
-            request.getSession().setAttribute(Contants.LOGIN_USER_SESSION, entity.getLoginName());
-            request.getSession().setMaxInactiveInterval(1800);
-        }
-
-        result.setMillis(System.currentTimeMillis() - start);
-
-        logger.debug("token end");
-
-        return JSONObject.toJSONString(result);
+    if (json.validate(requestBody)) {
+      requestVo = JSONObject.parseObject(requestBody, TokenRequestVo.class);
+    } else {
+      List<NameValuePair> params = URLEncodedUtils.parse(requestBody, Charset.forName("UTF-8"));
+      requestVo.namevalueBind(params);
     }
+
+    ResponseVo result = tokenService.getToken(requestVo);
+
+    if (!Message.SUCCESS_CODE.equals(result.getCode())) {
+      response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+    } else {
+      response.setStatus(HttpServletResponse.SC_OK);
+      BackUserInfoEntity entity = (BackUserInfoEntity) result.getEntity();
+      request.getSession().setAttribute(Contants.LOGIN_USER_SESSION,
+          entity.getBackTokenEntity().getLoginName());
+      request.getSession().setMaxInactiveInterval(1800);
+    }
+
+    result.setMillis(System.currentTimeMillis() - start);
+
+    logger.debug("token end");
+
+    return JSONObject.toJSONString(result);
+  }
 
 }

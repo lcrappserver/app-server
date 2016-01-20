@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Administrator on 2016/1/14.
+ * 菜单页跳转
  */
 @Controller
 public class MenuController {
 
-    @RequestMapping(value = "/menu", method = {RequestMethod.GET})
-    public String menu() {
-        return "menu";
-    }
+  @RequestMapping(value = "/menu", method = {RequestMethod.GET})
+  public String menu() {
+    return "menu";
+  }
 
-    @RequestMapping(value = "/logout", method = {RequestMethod.GET})
-    public String logout(HttpServletRequest req) {
-        req.getSession().removeAttribute(Contants.LOGIN_USER_SESSION);
-        return "redirect:/login";
-    }
+  @RequestMapping(value = "/logout", method = {RequestMethod.GET})
+  public String logout(HttpServletRequest req) {
+    req.getSession().removeAttribute(Contants.LOGIN_USER_SESSION);
+    return "redirect:/login";
+  }
 }

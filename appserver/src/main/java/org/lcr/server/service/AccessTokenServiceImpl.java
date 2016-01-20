@@ -14,27 +14,27 @@ import java.util.UUID;
 @Service
 public class AccessTokenServiceImpl implements AccessTokenService {
 
-    @Autowired
-    private TokenDao tokenDao;
+  @Autowired
+  private TokenDao tokenDao;
 
-    public ResponseVo token(TokenRequestVo vo) {
+  public ResponseVo token(TokenRequestVo vo) {
 
-        ResponseVo result = new ResponseVo();
+    ResponseVo result = new ResponseVo();
 
-        if (tokenDao.checkUserExits(vo.getLoginName(), vo.getPassword())) {
-            TokenVo tokenVo = new TokenVo();
-            UUID uuid = UUID.randomUUID();
-            String guid = uuid.toString().toUpperCase().replaceAll("-","");
-            tokenVo.setAccessToken(guid);
-            tokenVo.setExpiresIn(Contact.TOKEN_EXPIRES_IN);
-            result.setCode(Message.SUCCESS_CODE);
-            result.setMessage(Message.SUCCESS_MSG);
-            result.setEntity(tokenVo);
-        } else {
-            result.setCode(Message.USER_NOT_EXISTS_CODE);
-            result.setMessage(Message.USER_NOT_EXISTS_MSG);
-        }
-
-        return result;
+    if (tokenDao.checkUserExits(vo.getLoginName(), vo.getPassword())) {
+      TokenVo tokenVo = new TokenVo();
+      UUID uuid = UUID.randomUUID();
+      String guid = uuid.toString().toUpperCase().replaceAll("-", "");
+      tokenVo.setAccessToken(guid);
+      tokenVo.setExpiresIn(Contact.TOKEN_EXPIRES_IN);
+      result.setCode(Message.SUCCESS_CODE);
+      result.setMessage(Message.SUCCESS_MSG);
+      result.setEntity(tokenVo);
+    } else {
+      result.setCode(Message.USER_NOT_EXISTS_CODE);
+      result.setMessage(Message.USER_NOT_EXISTS_MSG);
     }
+
+    return result;
+  }
 }

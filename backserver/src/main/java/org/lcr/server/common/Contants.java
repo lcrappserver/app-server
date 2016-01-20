@@ -1,9 +1,10 @@
 package org.lcr.server.common;
 
 /**
- * Created by Administrator on 2016/1/14.
+ * 常量
  */
 public class Contants {
 
-    public final static String LOGIN_USER_SESSION = "backUser";
+  /** 用户登录Session */
+  public final static String LOGIN_USER_SESSION = "backUser";
 }

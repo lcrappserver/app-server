@@ -4,12 +4,24 @@ import org.lcr.server.entity.BackTokenEntity;
 import org.lcr.server.entity.BackUserInfoEntity;
 
 /**
- * Created by Administrator on 2016/1/13.
+ * 用户验证Dao
  */
 public interface TokenDao {
 
-    public BackTokenEntity getToken(BackTokenEntity vo);
+  /**
+   * 验证用户
+   * 
+   * @param vo 验证信息
+   * @return 验证结果
+   */
+  BackTokenEntity getToken(BackTokenEntity vo);
 
-    public BackUserInfoEntity getUserInfo(BackTokenEntity vo);
+  /**
+   * 获取用户信息
+   * 
+   * @param vo 验证信息
+   * @return 用户信息
+   */
+  BackUserInfoEntity getUserInfo(BackTokenEntity vo);
 
 }
