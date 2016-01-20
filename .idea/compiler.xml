@@ -27,6 +27,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="app-server" target="1.5" />
       <module name="appserver" target="1.5" />
       <module name="backserver" target="1.5" />
     </bytecodeTargetLevel>

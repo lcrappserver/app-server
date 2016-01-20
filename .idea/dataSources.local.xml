@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - dasa@localhost" uuid="0bfc20da-5325-4245-9a33-aa289ddb748d">
+      <secret-storage>master_key</secret-storage>
+      <user-name>dasauser</user-name>
+      <schema-pattern>dasa.*</schema-pattern>
+      <default-schemas>dasa.*</default-schemas>
+    </data-source>
+  </component>
+</project>
