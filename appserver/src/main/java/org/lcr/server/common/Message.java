@@ -31,4 +31,8 @@ public class Message {
      * accesstoken校验失败
      */
     public static final String AUTH_ERROR_MSG = "accesstoken校验失败";
+
+    public static final String NO_DATA_CODE = "NO_DATA";
+
+    public static final String NO_DATA_MSG = "没有找到数据";
 }

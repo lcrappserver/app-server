@@ -2,10 +2,12 @@ package org.lcr.server.https.action;
 
 import com.alibaba.fastjson.JSONObject;
 import org.lcr.server.common.Message;
+import org.lcr.server.service.ProductService;
 import org.lcr.server.tools.AccessTokenUtils;
 import org.lcr.server.vo.ResponseVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,35 +22,33 @@ import java.io.IOException;
 @RequestMapping(value = "/app")
 public class ProductController {
 
-  private static Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-  @ResponseBody
-  @RequestMapping(value = "/search", produces = "application/json; charset=utf-8", method = {
-      RequestMethod.GET})
-  public String token(@RequestParam(value = "access_token", required = true) String accessToken,
-      @RequestParam(value = "prod_name", required = false) String prodName,
-      HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @Autowired
+    private ProductService productService;
 
-    logger.debug("token start");
+    @ResponseBody
+    @RequestMapping(value = "/search", produces = "application/json; charset=utf-8", method = {
+            RequestMethod.GET})
+    public String token(@RequestParam(value = "access_token", required = true) String accessToken,
+                        @RequestParam(value = "prod_name", required = false) String prodName,
+                        HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    long start = System.currentTimeMillis();
+        logger.debug("token start");
 
-    ResponseVo result = new ResponseVo();
+        long start = System.currentTimeMillis();
 
-    if (!AccessTokenUtils.checkAccessToken(request, accessToken)) {
-      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      result.setCode(Message.AUTH_ERROR_CODE);
-      result.setMessage(Message.AUTH_ERROR_MSG);
-    } else {
-      result.setCode(Message.SUCCESS_CODE);
-      result.setMessage(Message.SUCCESS_MSG);
+        ResponseVo result = new ResponseVo();
+
+        if (AccessTokenUtils.checkAccessToken(request, accessToken, response, result)) {
+            result = productService.getProduct(prodName);
+        }
+
+        result.setMillis(System.currentTimeMillis() - start);
+
+        logger.debug("token end");
+
+        return JSONObject.toJSONString(result);
+
     }
-
-    result.setMillis(System.currentTimeMillis() - start);
-
-    logger.debug("token end");
-
-    return JSONObject.toJSONString(result);
-
-  }
 }

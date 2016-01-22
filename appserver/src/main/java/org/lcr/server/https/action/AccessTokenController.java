@@ -5,7 +5,6 @@ import org.lcr.server.common.Message;
 import org.lcr.server.service.AccessTokenService;
 import org.lcr.server.tools.AccessTokenUtils;
 import org.lcr.server.tools.EncodeUtils;
-import org.lcr.server.tools.JsonValidator;
 import org.lcr.server.vo.ResponseVo;
 import org.lcr.server.vo.TokenRequestVo;
 import org.lcr.server.vo.TokenVo;

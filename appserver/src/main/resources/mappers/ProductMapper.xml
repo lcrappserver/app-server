@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="org.lcr.server.dao.ProductDao">
+    <select id="getProduct" parameterType="String" resultType="ProductEntity">
+        select prod_type, prod_brand, prod_name, prod_id from tu_app_product
+        <where>
+            or prod_name like CONCAT('%','${key}','%' )
+            or prod_brand like CONCAT('%','${key}','%' )
+        </where>
+    </select>
+</mapper>
