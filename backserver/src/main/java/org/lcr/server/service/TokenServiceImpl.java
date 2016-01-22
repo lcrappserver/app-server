@@ -2,8 +2,8 @@ package org.lcr.server.service;
 
 import org.lcr.server.common.Message;
 import org.lcr.server.dao.TokenDao;
-import org.lcr.server.entity.BackTokenEntity;
-import org.lcr.server.entity.BackUserInfoEntity;
+import org.lcr.server.vo.entity.BackTokenEntity;
+import org.lcr.server.vo.entity.BackUserInfoEntity;
 import org.lcr.server.vo.ResponseVo;
 import org.lcr.server.vo.TokenRequestVo;
 import org.springframework.beans.factory.annotation.Autowired;

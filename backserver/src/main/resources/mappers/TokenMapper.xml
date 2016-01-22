@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="org.lcr.server.dao.TokenDao">
+    <select id="getToken" parameterType="BackTokenEntity" resultType="BackTokenEntity">
+        select login_name, password, access_token, user_id
+        from tu_back_user_token
+        <where>
+            and login_name = #{loginName} and password = #{password}
+        </where>
+    </select>
+
+    <resultMap id="userInfoResult" type="BackUserInfoEntity">
+        <id property="userId" column="user_id"/>
+        <result property="email" column="email"/>
+        <result property="mobile" column="mobile"/>
+        <result property="realName" column="real_name"/>
+        <result property="icon" column="icon"/>
+        <result property="sex" column="sex"/>
+        <result property="degree" column="degree"/>
+        <association property="backTokenEntity" javaType="BackTokenEntity">
+            <id property="userId" column="user_id"/>
+            <result property="loginName" column="login_name"/>
+            <result property="password" column="password"/>
+            <result property="accessToken" column="access_token"/>
+        </association>
+    </resultMap>
+    <select id="getUserInfo" parameterType="BackTokenEntity" resultMap="userInfoResult">
+        select t1.login_name, t1.password, t1.access_token,
+        t2.user_id, t2.email, t2.mobile, t2.real_name, t2.icon, t2.sex, t2.degree
+        from tu_back_user_token t1
+        inner join tu_back_user_info t2 on t1.user_id = t2.user_id
+        <where>
+            and login_name = #{loginName} and password = #{password}
+        </where>
+    </select>
+</mapper>

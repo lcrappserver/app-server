@@ -2,9 +2,6 @@ package org.lcr.server.vo;
 
 import java.io.Serializable;
 
-/**
- * Created by Administrator on 2016/1/13.
- */
 public class ResponseVo implements Serializable {
 
     private static final long serialVersionUID = 1486011383050182055L;

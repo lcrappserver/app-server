@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Administrator on 2016/1/13.
- */
 public class TokenRequestVo implements Serializable {
 
     private static final long serialVersionUID = 1606949021304358350L;

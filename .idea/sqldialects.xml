@@ -2,7 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/appserver/src/main/java/org/lcr/server/dao/TokenDaoImpl.java" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/backserver/src/main/java/org/lcr/server/dao/TokenDaoImpl.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/mysql-ddl/create_tu_app_product.ddl" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/mysql-ddl/create_tu_back_user_info.ddl" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/mysql-ddl/create_tu_back_user_token.ddl" dialect="MySQL" />

@@ -51,16 +51,15 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
    * @return true 需要拦截，false 不需要拦截
    */
   private boolean filterChar(String currUrl) {
-    String[] urlList = {"/login", "/", "", "/action/"};// 不过滤的登录白名单
+    String[] urlList = {"/login", "/back/"};// 不过滤的登录白名单
     String[] urlFixs = {"css", "js", "jpg", "woff", "png"};
-    currUrl = currUrl.substring(5);
     boolean flg = true;
     label: for (String dbUrl : urlList) {
       String prefix;
       if (currUrl.length() > 0) {
         int idex = currUrl.lastIndexOf('.');
         if (idex != -1) {
-          prefix = currUrl.substring(idex, currUrl.length());
+          prefix = currUrl.substring(idex + 1, currUrl.length());
           for (String urlFix : urlFixs) {
             if (prefix.equals(urlFix)) {
               flg = false;
@@ -69,7 +68,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
           }
         }
       }
-      if (currUrl.equals(dbUrl)) {
+      if (currUrl.contains(dbUrl)) {
         flg = false;
         break;
       }

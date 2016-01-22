@@ -14,5 +14,5 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <import resource="classpath:spring-jdbctemplate.xml" />
+    <import resource="classpath:spring-jdbc.xml"/>
 </beans>

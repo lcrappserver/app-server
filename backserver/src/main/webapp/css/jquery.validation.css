@@ -145,8 +145,8 @@ input {
 .validation-form-container .ui.loader {
     width: 32px;
     height: 32px;
-    background: url(loader-medium.gif) no-repeat;
-    background-position: 48% 0px;
+    /*background: url(loader-medium.gif) no-repeat;*/
+    /*background-position: 48% 0px;*/
     display: none;
     position: absolute;
     top: 50%;
@@ -357,7 +357,7 @@ input {
     font-weight: normal;
     text-decoration: inherit;
     text-align: center;
-    speak: none;
+    /*speak: none;*/
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;

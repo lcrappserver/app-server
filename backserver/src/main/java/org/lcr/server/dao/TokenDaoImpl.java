@@ -1,7 +1,7 @@
 package org.lcr.server.dao;
 
-import org.lcr.server.entity.BackTokenEntity;
-import org.lcr.server.entity.BackUserInfoEntity;
+import org.lcr.server.vo.entity.BackTokenEntity;
+import org.lcr.server.vo.entity.BackUserInfoEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -12,10 +12,9 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
-@Repository
-public class TokenDaoImpl implements TokenDao {
+public class TokenDaoImpl {
 
-  @Resource
+
   private JdbcTemplate jdbcTemplate;
 
   public BackTokenEntity getToken(BackTokenEntity vo) {

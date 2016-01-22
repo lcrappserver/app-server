@@ -17,8 +17,17 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="org.lcr.server.vo"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
+    </bean>
+
+    <!-- 可以把扫描到的Mapper接口变成Mapper对象 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.lcr.server.dao"/>
     </bean>
 
     <bean id="transactionManager"

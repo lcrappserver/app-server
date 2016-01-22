@@ -6,6 +6,7 @@ import org.lcr.server.dao.TokenDao;
 import org.lcr.server.vo.ResponseVo;
 import org.lcr.server.vo.TokenRequestVo;
 import org.lcr.server.vo.TokenVo;
+import org.lcr.server.vo.entity.AccessTokenEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,12 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 
     ResponseVo result = new ResponseVo();
 
-    if (tokenDao.checkUserExits(vo.getLoginName(), vo.getPassword())) {
+    AccessTokenEntity accessTokenEntity = new AccessTokenEntity();
+
+    accessTokenEntity.setLoginName(vo.getLoginName());
+    accessTokenEntity.setPassword(vo.getPassword());
+
+    if (tokenDao.checkUserExits(accessTokenEntity)) {
       TokenVo tokenVo = new TokenVo();
       UUID uuid = UUID.randomUUID();
       String guid = uuid.toString().toUpperCase().replaceAll("-", "");

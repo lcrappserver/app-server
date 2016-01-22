@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2016/1/13.
- */
 var localObj = window.location;
 var contextPath = localObj.pathname.split("/")[1];
 var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
@@ -13,7 +10,7 @@ $(document).ready(function() {
             },
             password: {
                 required: true
-            },
+            }
         },
         messages: {
             loginName: {
@@ -21,7 +18,7 @@ $(document).ready(function() {
             },
             password: {
                 required: "密码不能为空"
-            },
+            }
         },
         submitHandler: function() {
 
@@ -45,10 +42,11 @@ $(document).ready(function() {
             utils.ajaxOper(basePath + '/back/token.do', param, 'post', {
                 'SUCCESS': function(param, data) {
                     utils.setCookie('userName', param.loginName);
+                    console.info(data);
                     window.location.href = basePath + "/menu";
-                },
+                }
             }, "#login_btn").fail(function(status, msg) {
-                $('#login-btn').removeAttr('disabled')
+                $('#login-btn').removeAttr('disabled');
                 validator.showErrors({
                     'loginName': msg.message,
                     'password': msg.message

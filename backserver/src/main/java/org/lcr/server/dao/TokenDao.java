@@ -1,11 +1,13 @@
 package org.lcr.server.dao;
 
-import org.lcr.server.entity.BackTokenEntity;
-import org.lcr.server.entity.BackUserInfoEntity;
+import org.lcr.server.vo.entity.BackTokenEntity;
+import org.lcr.server.vo.entity.BackUserInfoEntity;
+import org.springframework.stereotype.Repository;
 
 /**
  * 用户验证Dao
  */
+@Repository
 public interface TokenDao {
 
   /**

@@ -44,6 +44,8 @@
         <httpclient.version>4.5.1</httpclient.version>
         <httpcore.version>4.4.4</httpcore.version>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+        <mybatis.version>3.3.0</mybatis.version>
+        <mybatis-spring.version>1.2.3</mybatis-spring.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -301,11 +303,23 @@
                 <version>${httpcore.version}</version>
             </dependency>
             <!-- Http End -->
+            <!-- Jdbc Start -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!-- Jdbc End -->
         </dependencies>
     </dependencyManagement>
 </project>

@@ -15,7 +15,8 @@
                 }
             }
         }
-        return result
+
+        return result;
     };
     $.testRemind = (function() {
         var winWidth = $(window).width();

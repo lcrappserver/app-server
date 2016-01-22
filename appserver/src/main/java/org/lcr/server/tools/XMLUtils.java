@@ -64,7 +64,7 @@ public class XMLUtils {
    */
   public static <T> T toVoObject(String xml, String rootElement, Class<T> clazz)
       throws DocumentException {
-    org.dom4j.Document doc = DocumentHelper.parseText(xml);
+    Document doc = DocumentHelper.parseText(xml);
     Element root = (Element) doc.selectSingleNode("/" + rootElement);
     Map<String, Object> vo = __buildXmlBody2map(root);
     return JSONObject.parseObject(JSONObject.toJSONString(vo), clazz);
@@ -99,27 +99,27 @@ public class XMLUtils {
           } else {
             String type = element.attributeValue("type", "java.lang.String");
             String text = element.getText().trim();
-            if (java.lang.String.class.getCanonicalName().equals(type)) {
+            if (String.class.getCanonicalName().equals(type)) {
               value = text;
-            } else if (java.lang.Character.class.getCanonicalName().equals(type)) {
+            } else if (Character.class.getCanonicalName().equals(type)) {
               value = text.charAt(0);
-            } else if (java.lang.Boolean.class.getCanonicalName().equals(type)) {
+            } else if (Boolean.class.getCanonicalName().equals(type)) {
               value = Boolean.valueOf(text);
-            } else if (java.lang.Short.class.getCanonicalName().equals(type)) {
-              value = java.lang.Short.parseShort(text);
-            } else if (java.lang.Integer.class.getCanonicalName().equals(type)) {
-              value = java.lang.Integer.parseInt(text);
-            } else if (java.lang.Long.class.getCanonicalName().equals(type)) {
-              value = java.lang.Long.parseLong(text);
-            } else if (java.lang.Float.class.getCanonicalName().equals(type)) {
-              value = java.lang.Float.parseFloat(text);
-            } else if (java.lang.Double.class.getCanonicalName().equals(type)) {
-              value = java.lang.Double.parseDouble(text);
+            } else if (Short.class.getCanonicalName().equals(type)) {
+              value = Short.parseShort(text);
+            } else if (Integer.class.getCanonicalName().equals(type)) {
+              value = Integer.parseInt(text);
+            } else if (Long.class.getCanonicalName().equals(type)) {
+              value = Long.parseLong(text);
+            } else if (Float.class.getCanonicalName().equals(type)) {
+              value = Float.parseFloat(text);
+            } else if (Double.class.getCanonicalName().equals(type)) {
+              value = Double.parseDouble(text);
             } else if (java.math.BigInteger.class.getCanonicalName().equals(type)) {
               value = new java.math.BigInteger(text);
             } else if (java.math.BigDecimal.class.getCanonicalName().equals(type)) {
               value = new java.math.BigDecimal(text);
-            } else if (java.util.Map.class.getCanonicalName().equals(type)) {
+            } else if (Map.class.getCanonicalName().equals(type)) {
               value = __buildXmlBody2map(element);
             }
           }

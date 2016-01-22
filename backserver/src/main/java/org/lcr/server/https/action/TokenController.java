@@ -3,7 +3,7 @@ package org.lcr.server.https.action;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.lcr.server.entity.BackUserInfoEntity;
+import org.lcr.server.vo.entity.BackUserInfoEntity;
 import org.lcr.server.tools.JsonValidator;
 import org.lcr.server.common.Contants;
 import org.lcr.server.common.Message;
@@ -35,7 +35,7 @@ public class TokenController {
   private TokenService tokenService;
 
   @ResponseBody
-  @RequestMapping(value = "/token", produces = "application/json; charset=utf-8", method = {
+  @RequestMapping(value = "/token.do", produces = "application/json; charset=utf-8", method = {
       RequestMethod.POST})
   public String token(@RequestBody String requestBody, HttpServletRequest request,
       HttpServletResponse response) throws IOException {

@@ -2,9 +2,6 @@ package org.lcr.server.vo;
 
 import java.io.Serializable;
 
-/**
- * Created by Administrator on 2016/1/18.
- */
 public class TokenVo implements Serializable{
 
     private static final long serialVersionUID = 1190411849865542449L;
